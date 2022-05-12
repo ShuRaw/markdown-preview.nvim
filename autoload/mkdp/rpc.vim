@@ -77,12 +77,9 @@ function! mkdp#rpc#start_server() abort
             \ 'on_stderr': function('s:on_stderr'),
             \ 'on_exit': function('s:on_exit')
             \ }
-      " https://github.com/iamcco/markdown-preview.nvim/issues/219#issuecomment-669789625
-      if $NVIM_LISTEN_ADDRESS =~# '\v\d+\.\d+\.\d+(:\d+)?'
-        let l:nvim_optons.env = {
-          \   'MKDP_NVIM_LISTEN_ADDRESS': serverstart()
-          \ }
-      endif
+      let l:nvim_optons.env = {
+        \   'MKDP_NVIM_LISTEN_ADDRESS': serverstart()
+        \ }
       let s:mkdp_channel_id = jobstart(l:cmd, l:nvim_optons)
     endif
   else
